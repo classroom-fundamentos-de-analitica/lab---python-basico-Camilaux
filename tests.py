@@ -9,6 +9,8 @@ import preguntas
 
 def test_01():
     assert preguntas.pregunta_01() == 214
+    
+print(test_01())
 
 
 def test_02():
@@ -177,6 +179,8 @@ def test_11():
 
 def test_12():
     assert preguntas.pregunta_12() == {"A": 177, "B": 187, "C": 114, "D": 136, "E": 324}
+    
+test_12()
 
 
 test = {

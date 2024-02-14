@@ -165,7 +165,12 @@ def pregunta_05():
         else:
             e.append(int(line[2]))
     
-    final = f"{[("A",max(a),min(a)),("B",max(b),min(b)),("C",max(c),min(c)),("D",max(d),min(d)),("E",max(e),min(e))]}"
+    final = str([("A", max(a), min(a)),
+             ("B", max(b), min(b)),
+             ("C", max(c), min(c)),
+             ("D", max(d), min(d)),
+             ("E", max(e), min(e))])
+    #f"{[("A",max(a),min(a)),("B",max(b),min(b)),("C",max(c),min(c)),("D",max(d),min(d)),("E",max(e),min(e))]}"
     
     return final
 
@@ -271,7 +276,7 @@ def pregunta_08():
     ]
 
     """
-    return
+    return 
 
 
 def pregunta_09():
@@ -390,4 +395,14 @@ def pregunta_12():
     return letras
 
 print(pregunta_01())
+print(pregunta_02())
+print(pregunta_03())
+print(pregunta_04())
+print(pregunta_05())
+print(pregunta_06())
+print(pregunta_07())
+print(pregunta_08())
+print(pregunta_09())
+print(pregunta_10())
+print(pregunta_11())
 print(pregunta_12())
