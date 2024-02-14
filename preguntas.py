@@ -165,14 +165,11 @@ def pregunta_05():
         else:
             e.append(int(line[2]))
     
-    final = str([("A", max(a), min(a)),
+    return str([("A", max(a), min(a)),
              ("B", max(b), min(b)),
              ("C", max(c), min(c)),
              ("D", max(d), min(d)),
              ("E", max(e), min(e))])
-    #f"{[("A",max(a),min(a)),("B",max(b),min(b)),("C",max(c),min(c)),("D",max(d),min(d)),("E",max(e),min(e))]}"
-    
-    return final
 
 
 def pregunta_06():
