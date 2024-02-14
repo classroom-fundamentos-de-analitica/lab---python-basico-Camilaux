@@ -390,3 +390,4 @@ def pregunta_12():
     return letras
 
 print(pregunta_01())
+print(pregunta_12())
