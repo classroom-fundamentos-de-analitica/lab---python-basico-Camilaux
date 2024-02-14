@@ -388,3 +388,5 @@ def pregunta_12():
             letras[line[0]] += sum(valores)
     
     return letras
+
+print(pregunta_01())
