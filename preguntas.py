@@ -234,10 +234,10 @@ def pregunta_07():
     """
     num = {}
     for line in separated_lines:
-        if line[1] not in num:
-            num[line[1]] = [line[0]]
+        if int(line[1]) not in num:
+            num[int(line[1])] = [line[0]]
         else:
-            num[line[1]].append(line[0])
+            num[int(line[1])].append(line[0])
     orden = sorted(num.items())
     return orden
 
@@ -266,11 +266,11 @@ def pregunta_08():
     """
     num = {}
     for line in separated_lines:
-        if line[1] not in num:
-            num[line[1]] = [line[0]]
+        if int(line[1]) not in num:
+            num[int(line[1])] = [line[0]]
         else:
-            if line[0] not in num[line[1]]:
-                num[line[1]].append(line[0])
+            if line[0] not in num[int(line[1])]:
+                num[int(line[1])].append(line[0])
             
     orden = sorted(num.items())
     
