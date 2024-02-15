@@ -194,37 +194,21 @@ def pregunta_06():
     ]
 
     """
-    """letras = []
+    
+    dicc = {}
+    lis = []
     for line in separated_lines:
         for li in line[4].split(','):
-            if li.split(':')[0] not in letras:
-                mini = li.spl
-                letras.append((li.split(':')[0],mini,maxi))
-    orden = sorted(letras)
-    print(orden)
-        #for li in line[4]:
-        #    print(li)
-        #print(line[4][0])"""
+            if li.split(':')[0] not in dicc:
+                dicc[li.split(':')[0]] = [int(li.split(':')[1])]
+            else:
+                dicc[li.split(':')[0]].append(int(li.split(':')[1]))
         
-    """letras = ['aaa','bbb','ccc','ddd','E']
-    a,b,c,d,e = [],[],[],[],[]
-    
-    for line in lines:
-        if line[0] == letras[0]:
-            a.append(int(line[2]))
-        elif line[0] == letras[1]:
-            b.append(int(line[2]))
-        elif line[0] == letras[2]:
-            c.append(int(line[2]))
-        elif line[0] == letras[3]:
-            d.append(int(line[2]))
-        else:
-            e.append(int(line[2]))
-    
-    final = f"{[("A",max(a),min(a)),("B",max(b),min(b)),("C",max(c),min(c)),("D",max(d),min(d)),("E",max(e),min(e))]}"
-    
-    return final"""
-    return
+    for clave, valor in dicc.items():
+        
+        lis.append((clave, min(valor),max(valor)))
+     
+    return sorted(lis, key=lambda x: x[0])
 
 
 def pregunta_07():
@@ -248,7 +232,14 @@ def pregunta_07():
     ]
 
     """
-    return
+    num = {}
+    for line in separated_lines:
+        if line[1] not in num:
+            num[line[1]] = [line[0]]
+        else:
+            num[line[1]].append(line[0])
+    orden = sorted(num.items())
+    return orden
 
 
 def pregunta_08():
@@ -273,7 +264,22 @@ def pregunta_08():
     ]
 
     """
-    return 
+    num = {}
+    for line in separated_lines:
+        if line[1] not in num:
+            num[line[1]] = [line[0]]
+        else:
+            if line[0] not in num[line[1]]:
+                num[line[1]].append(line[0])
+            
+    orden = sorted(num.items())
+    
+    fin = []
+    for ele in orden:
+        ele[1].sort()
+        fin.append((ele[0],ele[1])) 
+        
+    return fin
 
 
 def pregunta_09():
