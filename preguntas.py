@@ -12,6 +12,11 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+with open('data.csv', 'r') as file:
+    #Lee las líneas del archivo
+    lines = file.readlines()
+    # Separa cada línea por el carácter de tabulación
+    separated_lines = [line.strip().split('\t') for line in lines]
 
 def pregunta_01():
     """
@@ -21,7 +26,14 @@ def pregunta_01():
     214
 
     """
-    return
+    segunda_col = []
+    for line in lines:
+        line = line.strip()
+        segunda_col.append(line[2])
+    
+    enteros = [int(x) for x in segunda_col]
+    return sum(enteros)
+
 
 
 def pregunta_02():
@@ -39,7 +51,19 @@ def pregunta_02():
     ]
 
     """
-    return
+    conteo_letra = {}
+    
+    for line in lines:
+        # Si la palabra ya está en el diccionario, aumenta su contador en 1
+        if line[0] in conteo_letra:
+            conteo_letra[line[0]] += 1
+
+        # Si la palabra no está en el diccionario, inicializa su contador en 1
+        else:
+            conteo_letra[line[0]] = 1
+            
+    ordenado = sorted(conteo_letra.items())
+    return ordenado
 
 
 def pregunta_03():
@@ -57,7 +81,20 @@ def pregunta_03():
     ]
 
     """
-    return
+    conteo_letra = {}
+    
+    for line in lines:
+
+        if line[0] in conteo_letra:
+            conteo_letra[line[0]] += int(line[2])
+
+        else:
+            conteo_letra[line[0]] = int(line[2])
+            
+    ordenado = sorted(conteo_letra.items())
+    
+    
+    return ordenado
 
 
 def pregunta_04():
@@ -82,7 +119,20 @@ def pregunta_04():
     ]
 
     """
-    return
+    conteo_mes = {}
+    
+    for line in lines:
+        mes = line[9:11]
+        
+        if mes in conteo_mes:
+            conteo_mes[mes] += 1
+
+        else:
+            conteo_mes[mes] = 1
+            
+    ordenado = sorted(conteo_mes.items())
+    
+    return ordenado
 
 
 def pregunta_05():
@@ -100,7 +150,26 @@ def pregunta_05():
     ]
 
     """
-    return
+    letras = ['A','B','C','D','E']
+    a,b,c,d,e = [],[],[],[],[]
+    
+    for line in lines:
+        if line[0] == letras[0]:
+            a.append(int(line[2]))
+        elif line[0] == letras[1]:
+            b.append(int(line[2]))
+        elif line[0] == letras[2]:
+            c.append(int(line[2]))
+        elif line[0] == letras[3]:
+            d.append(int(line[2]))
+        else:
+            e.append(int(line[2]))
+    
+    return [("A", max(a), min(a)),
+             ("B", max(b), min(b)),
+             ("C", max(c), min(c)),
+             ("D", max(d), min(d)),
+             ("E", max(e), min(e))]
 
 
 def pregunta_06():
@@ -125,7 +194,21 @@ def pregunta_06():
     ]
 
     """
-    return
+    
+    dicc = {}
+    lis = []
+    for line in separated_lines:
+        for li in line[4].split(','):
+            if li.split(':')[0] not in dicc:
+                dicc[li.split(':')[0]] = [int(li.split(':')[1])]
+            else:
+                dicc[li.split(':')[0]].append(int(li.split(':')[1]))
+        
+    for clave, valor in dicc.items():
+        
+        lis.append((clave, min(valor),max(valor)))
+     
+    return sorted(lis, key=lambda x: x[0])
 
 
 def pregunta_07():
@@ -149,7 +232,14 @@ def pregunta_07():
     ]
 
     """
-    return
+    num = {}
+    for line in separated_lines:
+        if int(line[1]) not in num:
+            num[int(line[1])] = [line[0]]
+        else:
+            num[int(line[1])].append(line[0])
+    orden = sorted(num.items())
+    return orden
 
 
 def pregunta_08():
@@ -174,7 +264,22 @@ def pregunta_08():
     ]
 
     """
-    return
+    num = {}
+    for line in separated_lines:
+        if int(line[1]) not in num:
+            num[int(line[1])] = [line[0]]
+        else:
+            if line[0] not in num[int(line[1])]:
+                num[int(line[1])].append(line[0])
+            
+    orden = sorted(num.items())
+    
+    fin = []
+    for ele in orden:
+        ele[1].sort()
+        fin.append((ele[0],ele[1])) 
+        
+    return fin
 
 
 def pregunta_09():
@@ -197,7 +302,19 @@ def pregunta_09():
     }
 
     """
-    return
+    
+    letras = {}
+    for line in separated_lines:
+        for li in line[4].split(','):
+            if li.split(':')[0] not in letras:
+                letras[li.split(':')[0]] = 1
+            else:
+                letras[li.split(':')[0]] += 1
+        
+        
+    orden = {clave: letras[clave] for clave in sorted(letras)}
+
+    return orden
 
 
 def pregunta_10():
@@ -218,7 +335,12 @@ def pregunta_10():
 
 
     """
-    return
+    li = []
+    
+    for line in separated_lines:
+        li.append((line[0],len(line[3].split(',')),len(line[4].split(','))))
+            
+    return li
 
 
 def pregunta_11():
@@ -239,7 +361,13 @@ def pregunta_11():
 
 
     """
-    return
+    dicc = {'a':0,'b':0,'c':0,'d':0,'e':0,'f':0,'g':0}
+    
+    for line in separated_lines:
+        for clave in dicc.keys():
+            if clave in line[3]:
+                dicc[clave] += int(line[1])
+    return dicc
 
 
 def pregunta_12():
@@ -257,4 +385,27 @@ def pregunta_12():
     }
 
     """
-    return
+
+    letras = {'A':0,'B':0,'C':0,'D':0,'E':0}
+    
+    for line in separated_lines:
+         # Extraer los valores numéricos y convertirlos a enteros
+        valores = [int(li.split(':')[1]) for li in line[4].split(',')]
+
+        if line[0] in letras:
+            letras[line[0]] += sum(valores)
+    
+    return letras
+
+print(pregunta_01())
+print(pregunta_02())
+print(pregunta_03())
+print(pregunta_04())
+print(pregunta_05())
+print(pregunta_06())
+print(pregunta_07())
+print(pregunta_08())
+print(pregunta_09())
+print(pregunta_10())
+print(pregunta_11())
+print(pregunta_12())
